@@ -22,8 +22,8 @@
 - [License](#license)
 - [Support](#support)
 
-## View Demo
-Click Here(
+### Live Demo
+[View Live Demo]( https://pjahanavi.github.io/pjfashion/)
 
 ## 🌟 Overview
 
