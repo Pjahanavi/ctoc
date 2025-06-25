@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom to Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffe4e6 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 20, 147, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ffb6c1, #ffffff);
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.1);
+            border: 2px solid #ffe4e6;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.2);
+        }
+
+        .section h2 {
+            color: #ff1493;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #ffb6c1;
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #ffe4e6, #ffffff);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #ffb6c1;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .skill-card h3 {
+            color: #ff1493;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-link {
+            display: inline-block;
+            background: #ff69b4;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            background: #ff1493;
+            transform: scale(1.05);
+        }
+
+        .internship-list, .company-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .internship-item, .company-item {
+            background: #ffe4e6;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff69b4;
+        }
+
+        .roadmap {
+            background: linear-gradient(135deg, #ffb6c1, #ffe4e6);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .roadmap-step {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff1493;
+            position: relative;
+        }
+
+        .roadmap-step::before {
+            content: "→";
+            position: absolute;
+            left: -15px;
+            color: #ff69b4;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff1493;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #ff69b4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            background: #ffe4e6;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            background: #ff1493;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🎓 Classroom to Company</div>
+            <ul class="nav-links">
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#internships">Internships</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#companies">Companies</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>From Classroom to Company</h1>
+            <p>Your complete guide to transition from student life to professional success. Master skills, find internships, and land your dream job!</p>
+            <button class="btn" onclick="scrollToSection('skills')">Start Your Journey</button>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>🚀 Essential Skills Development</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>☕ Java Programming</h3>
+                    <p>Master object-oriented programming and enterprise development</p>
+                    <a href="https://www.youtube.com/watch?v=eIrMbAQSU34" class="youtube-link" target="_blank">📺 Java Full Course</a>
+                    <a href="https://www.youtube.com/watch?v=BGTx91t8q50" class="youtube-link" target="_blank">📺 Java Projects</a>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>🐍 Python Programming</h3>
+                    <p>Learn the most versatile programming language for modern development</p>
+                    <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" class="youtube-link" target="_blank">📺 Python Full Course</a>
+                    <a href="https://www.youtube.com/watch?v=XKHEtdqhLK8" class="youtube-link" target="_blank">📺 Python Projects</a>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>🌐 Web Technologies</h3>
+                    <p>HTML, CSS, JavaScript, React, Node.js for full-stack development</p>
+                    <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" class="youtube-link" target="_blank">📺 HTML/CSS/JS</a>
+                    <a href="https://www.youtube.com/watch?v=Ke90Tje7VS0" class="youtube-link" target="_blank">📺 React Tutorial</a>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>🤖 Artificial Intelligence</h3>
+                    <p>Machine Learning, Deep Learning, and AI fundamentals</p>
+                    <a href="https://www.youtube.com/watch?v=JMUxmLyrhSk" class="youtube-link" target="_blank">📺 ML Full Course</a>
+                    <a href="https://www.youtube.com/watch?v=aircAruvnKk" class="youtube-link" target="_blank">📺 Neural Networks</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="internships" class="section">
+            <h2>💼 Internship Opportunities</h2>
+            <p>Find the perfect internship to kickstart your career:</p>
+            <div class="internship-list">
+                <div class="internship-item">
+                    <h3>🔗 LinkedIn Internships</h3>
+                    <p>Professional networking platform with extensive internship listings</p>
+                    <a href="https://www.linkedin.com/jobs/internship-jobs/" class="btn" target="_blank">Apply Now</a>
+                </div>
+                
+                <div class="internship-item">
+                    <h3>🌟 Indeed Internships</h3>
+                    <p>Large job search platform with diverse internship opportunities</p>
+                    <a href="https://www.indeed.com/q-internship-jobs.html" class="btn" target="_blank">Browse Internships</a>
+                </div>
+                
+                <div class="internship-item">
+                    <h3>💻 AngelList (Wellfound)</h3>
+                    <p>Startup internships and early-career opportunities</p>
+                    <a href="https://wellfound.com/jobs" class="btn" target="_blank">Explore Startups</a>
+                </div>
+                
+                <div class="internship-item">
+                    <h3>🎯 Internshala</h3>
+                    <p>India's largest internship platform</p>
+                    <a href="https://internshala.com/" class="btn" target="_blank">Find Internships</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="section">
+            <h2>🗺️ Complete Roadmap</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('aptitude')">Aptitude & Reasoning</button>
+                <button class="tab" onclick="showTab('softskills')">Soft Skills</button>
+                <button class="tab" onclick="showTab('technical')">Technical Path</button>
+            </div>
+
+            <div id="aptitude" class="tab-content active">
+                <div class="roadmap">
+                    <h3>📊 Aptitude & Reasoning Mastery</h3>
+                    <div class="roadmap-step">
+                        <h4>Quantitative Aptitude</h4>
+                        <p>Master arithmetic, algebra, geometry, and data interpretation</p>
+                        <a href="https://www.youtube.com/watch?v=_s7HCF4BTWs" class="youtube-link" target="_blank">📺 Quant Complete Course</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Logical Reasoning</h4>
+                        <p>Develop pattern recognition, critical thinking, and problem-solving</p>
+                        <a href="https://www.youtube.com/watch?v=8wHl5rTsyaQ" class="youtube-link" target="_blank">📺 Reasoning Tutorial</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Verbal Ability</h4>
+                        <p>Enhance reading comprehension, grammar, and vocabulary</p>
+                        <a href="https://www.youtube.com/watch?v=sxXiB2t4_LY" class="youtube-link" target="_blank">📺 Verbal Aptitude</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="softskills" class="tab-content">
+                <div class="roadmap">
+                    <h3>🤝 Soft Skills Development</h3>
+                    <div class="roadmap-step">
+                        <h4>Communication Skills</h4>
+                        <p>Master verbal, written, and presentation skills</p>
+                        <a href="https://www.youtube.com/watch?v=HAnw168huqA" class="youtube-link" target="_blank">📺 Communication Skills</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Leadership & Teamwork</h4>
+                        <p>Build collaboration and leadership capabilities</p>
+                        <a href="https://www.youtube.com/watch?v=7QufxKJ7zlk" class="youtube-link" target="_blank">📺 Leadership Skills</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Time Management</h4>
+                        <p>Optimize productivity and work-life balance</p>
+                        <a href="https://www.youtube.com/watch?v=iONDebHX9qk" class="youtube-link" target="_blank">📺 Time Management</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Emotional Intelligence</h4>
+                        <p>Develop self-awareness and interpersonal skills</p>
+                        <a href="https://www.youtube.com/watch?v=LgUCyWhJf6s" class="youtube-link" target="_blank">📺 Emotional Intelligence</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="technical" class="tab-content">
+                <div class="roadmap">
+                    <h3>⚡ Technical Career Path</h3>
+                    <div class="roadmap-step">
+                        <h4>Foundation (Months 1-3)</h4>
+                        <p>Programming basics, data structures, algorithms</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Specialization (Months 4-8)</h4>
+                        <p>Choose your track: Web Dev, AI/ML, Mobile, or Backend</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Projects (Months 9-12)</h4>
+                        <p>Build portfolio projects and contribute to open source</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Job Preparation (Months 12+)</h4>
+                        <p>Interview prep, resume building, networking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="companies" class="section">
+            <h2>🏢 Corporate Opportunities</h2>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="showCompanyTab('mnc')">MNCs</button>
+                <button class="tab" onclick="showCompanyTab('startup')">Startups</button>
+                <button class="tab" onclick="showCompanyTab('apply')">How to Apply</button>
+            </div>
+
+            <div id="mnc" class="tab-content active">
+                <h3>🌍 Top MNCs & Corporations</h3>
+                <div class="company-list">
+                    <div class="company-item">
+                        <h4>Tech Giants</h4>
+                        <p>Google, Microsoft, Amazon, Apple, Meta</p>
+                        <a href="https://careers.google.com/" class="btn" target="_blank">Google Careers</a>
+                        <a href="https://careers.microsoft.com/" class="btn" target="_blank">Microsoft Careers</a>
+                    </div>
+                    <div class="company-item">
+                        <h4>Consulting</h4>
+                        <p>McKinsey, BCG, Bain, Deloitte, PwC, EY</p>
+                        <a href="https://www.mckinsey.com/careers" class="btn" target="_blank">McKinsey Careers</a>
+                    </div>
+                    <div class="company-item">
+                        <h4>Finance</h4>
+                        <p>Goldman Sachs, JP Morgan, Morgan Stanley</p>
+                        <a href="https://www.goldmansachs.com/careers/" class="btn" target="_blank">Goldman Careers</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="startup" class="tab-content">
+                <h3>🚀 Startup & Scale-up Opportunities</h3>
+                <div class="company-list">
+                    <div class="company-item">
+                        <h4>Indian Unicorns</h4>
+                        <p>Zomato, Paytm, Byju's, Swiggy, Ola, Flipkart</p>
+                        <a href="https://www.zomato.com/careers" class="btn" target="_blank">Zomato Careers</a>
+                    </div>
+                    <div class="company-item">
+                        <h4>Global Startups</h4>
+                        <p>Stripe, Canva, Notion, Discord, Figma</p>
+                        <a href="https://stripe.com/jobs" class="btn" target="_blank">Stripe Jobs</a>
+                    </div>
+                    <div class="company-item">
+                        <h4>Startup Platforms</h4>
+                        <p>AngelList, Startup Jobs, Y Combinator</p>
+                        <a href="https://wellfound.com/" class="btn" target="_blank">Wellfound</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="apply" class="tab-content">
+                <div class="roadmap">
+                    <h3>📝 Application Strategy</h3>
+                    <div class="roadmap-step">
+                        <h4>Resume Building</h4>
+                        <p>Create ATS-friendly resumes highlighting your skills and projects</p>
+                        <a href="https://www.youtube.com/watch?v=Tt08KmFfIYQ" class="youtube-link" target="_blank">📺 Resume Tips</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>LinkedIn Optimization</h4>
+                        <p>Build a professional LinkedIn profile and network actively</p>
+                        <a href="https://www.youtube.com/watch?v=VPGVgdHhcUw" class="youtube-link" target="_blank">📺 LinkedIn Guide</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Interview Preparation</h4>
+                        <p>Practice technical and behavioral interview questions</p>
+                        <a href="https://www.youtube.com/watch?v=0rnjeXsWRHs" class="youtube-link" target="_blank">📺 Interview Tips</a>
+                    </div>
+                    <div class="roadmap-step">
+                        <h4>Application Tracking</h4>
+                        <p>Use job boards, company websites, and referrals strategically</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Classroom to Company. Empowering students to achieve their career dreams! 🌟</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function showCompanyTab(tabName) {
+            // Hide all company tab contents
+            const contents = document.querySelectorAll('#companies .tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from company tabs
+            const tabs = document.querySelectorAll('#companies .tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
